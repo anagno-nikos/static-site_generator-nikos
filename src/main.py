@@ -1,4 +1,4 @@
-import os
+import os, sys
 import shutil
 
 from copystatic import copy_source_destination, generate_page, generate_pages_recursive
@@ -7,6 +7,11 @@ dir_path_static = "./static"
 dir_path_public = "./public"
 dir_path_content = "./content"
 template_path = "./template.html"
+
+if sys.argv[1] is not None:
+    basepath = sys.argv[1]
+else:
+    basepath = "/"
 
 def main():
     print("Deleting public directory...")
@@ -21,6 +26,7 @@ def main():
         os.path.join(dir_path_content),
         template_path,
         os.path.join(dir_path_public),
+        basepath=basepath
     )
 
 
